@@ -5,11 +5,12 @@ import { generateToken } from '../utils/tokenization.js';
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
+    console.log(username, email, password);
     //   Check user already exists
-    const sql_query = 'SELECT * FROM users WHERE email = ?';
+    const sql_query = 'SELECT * FROM `users` WHERE `email` = ?';
     db.query(sql_query, [email], async (err, data) => {
       if (err) return err;
+      // console.log(data);
       if (data.length > 0) {
         return res.status(403).json({
           message: 'We already have an account with this email address',
@@ -19,13 +20,18 @@ export const register = async (req, res) => {
       // Create new encrypted password before inserting into the users table
       const newPassword = await encryptFunc(password);
       const q =
-        'INSERT INTO users (`username`,`email`,`password`) VALUES (?,?,?)';
+        'INSERT INTO `users` (`username`,`email`,`password`) VALUES (?,?,?)';
       db.query(q, [username, email, newPassword], (err, result) => {
-        if (err) return err;
+        if (err) {
+          console.log(err);
+          return err;
+        }
 
-        const selectQuery = 'SELECT * FROM users WHERE id = LAST_INSERT_ID()';
+        // console.log(result);
+        const selectQuery =
+          'SELECT * FROM `users` WHERE `id` = LAST_INSERT_ID()';
         db.query(selectQuery, (err, insertedData) => {
-          //   console.log(insertedData[0].id);
+          console.log(insertedData[0].id);
           const payload = {
             username: insertedData[0].username,
             email: insertedData[0].email,
