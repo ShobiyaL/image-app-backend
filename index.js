@@ -39,7 +39,7 @@ app.use('/api/images', authentication, imageRouter);
 app.get('/api/image/:filename', (req, res) => {
   const filename = req.params.filename;
   const imagePath = path.join(__dirname, 'public', 'images', filename);
-  // console.log(imagePath, 'imagepath');
+  console.log(imagePath, 'imagepath');
   // Check if the file exists
   if (fs.existsSync(imagePath)) {
     // Read the file and send it as the response
