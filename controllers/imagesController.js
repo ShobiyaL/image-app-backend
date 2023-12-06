@@ -4,7 +4,7 @@ export const uploadsFunc = (req, res) => {
   console.log(req.user.id);
   const { description } = req.body;
   console.log(description);
-  const imageUrl = req.file.filename;
+  const imageUrl = req.file.buffer.toString('base64');
   console.log(imageUrl);
 
   const q = 'INSERT INTO `images` (`description`,`img`,`uid`) VALUES (?,?,?)';
