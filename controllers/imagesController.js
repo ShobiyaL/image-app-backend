@@ -10,7 +10,11 @@ export const uploadsFunc = (req, res) => {
   const q = 'INSERT INTO `images` (`description`,`img`,`uid`) VALUES (?,?,?)';
 
   db.query(q, [description, imageUrl, req.user.id], (err, data) => {
-    if (err) return err;
+    if (err) {
+      console.log(error);
+      return err;
+    }
+    console.log(data);
     if (data)
       return res
         .status(201)
@@ -26,7 +30,7 @@ export const getImages = async (req, res) => {
       console.log(err);
       return err;
     }
-    // console.log(data);
+    console.log(data);
     res
       .status(200)
       .json({ message: 'Fetched images', status: 'success', data });
