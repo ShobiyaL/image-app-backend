@@ -26,7 +26,6 @@ let corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.static(__dirname,'public'));
 
 app.use('/api/users', userRouter);
 app.use('/api/images', authentication, imageRouter);
