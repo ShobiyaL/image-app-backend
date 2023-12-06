@@ -5,7 +5,7 @@ import { generateToken } from '../utils/tokenization.js';
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    console.log(username, email, password);
+    // console.log(username, email, password);
     //   Check user already exists
     const sql_query = 'SELECT * FROM `users` WHERE `email` = ?';
     db.query(sql_query, [email], async (err, data) => {
@@ -31,7 +31,7 @@ export const register = async (req, res) => {
         const selectQuery =
           'SELECT * FROM `users` WHERE `id` = LAST_INSERT_ID()';
         db.query(selectQuery, (err, insertedData) => {
-          console.log(insertedData[0].id);
+          // console.log(insertedData[0].id);
           const payload = {
             username: insertedData[0].username,
             email: insertedData[0].email,
@@ -61,10 +61,10 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email, password);
   try {
-    const sql_query = 'SELECT * FROM users WHERE email = ?';
+    const { email, password } = req.body;
+    // console.log(email, password);
+    const sql_query = 'SELECT * FROM `users` WHERE `email` = ?';
     db.query(sql_query, [email], async (err, data) => {
       // console.log(data);
       if (err) return err;

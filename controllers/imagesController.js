@@ -3,7 +3,7 @@ import { db } from '../db.js';
 export const uploadsFunc = (req, res) => {
   // console.log(req.user.id);
   const { description } = req.body;
-  //   console.log(description);
+  // console.log(description);
   const imageUrl = req.file.filename;
   // console.log(imageUrl);
 
