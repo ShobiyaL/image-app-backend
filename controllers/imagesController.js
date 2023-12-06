@@ -11,7 +11,7 @@ export const uploadsFunc = (req, res) => {
 
   db.query(q, [description, imageUrl, req.user.id], (err, data) => {
     if (err) {
-      console.log(error);
+      console.log(err);
       return err;
     }
     console.log(data);
