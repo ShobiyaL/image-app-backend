@@ -52,8 +52,8 @@ app.get('/api/image/:filename', (req, res) => {
     const dataUri = `data:image/png;base64,${base64Image}`;
 
     // Send the data URI as the response
-    res.send({ image: dataUri });
-    // console.log(dataUri, 'hi');
+    res.json({ image: dataUri });
+    console.log(dataUri, 'hi');
   } else {
     res.status(404).send('Not Found');
   }
