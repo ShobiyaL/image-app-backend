@@ -4,9 +4,7 @@ import path from 'path';
 import { uploadsFunc, getImages } from '../controllers/imagesController.js';
 const router = express.Router();
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, '../public/images');
-  },
+  destination: 'public/images',
   filename: (req, file, cb) => {
     console.log(file);
     cb(
