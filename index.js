@@ -45,7 +45,7 @@ app.get('/api/image/:filename', (req, res) => {
     // Read the file and send it as the response
     // Read the image file
     const image = fs.readFileSync(imagePath);
-
+    console.log(image);
     // Convert the image to base64
     const base64Image = image.toString('base64');
 

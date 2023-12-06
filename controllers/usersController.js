@@ -63,7 +63,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    // console.log(email, password);
+     console.log(email, password);
     const sql_query = 'SELECT * FROM `users` WHERE `email` = ?';
     db.query(sql_query, [email], async (err, data) => {
       // console.log(data);

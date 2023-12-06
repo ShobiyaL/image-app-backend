@@ -23,7 +23,7 @@ export const uploadsFunc = (req, res) => {
 };
 
 export const getImages = async (req, res) => {
-  // console.log(req.user.id);
+  console.log(req.user.id);
   const q = 'SELECT * FROM `images` WHERE `uid` = ?';
   db.query(q, [req.user.id], (err, data) => {
     if (err) {
